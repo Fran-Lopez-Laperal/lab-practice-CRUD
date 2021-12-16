@@ -1,0 +1,65 @@
+<div>
+
+  {{#if errors}}
+    <div class="alert alert-danger">
+      {{#each errors as |error|}}
+        <div>error</div>
+      {{/each}}
+    </div>
+
+  {{/if}}
+
+  <form
+    action="/movies/create"
+    method="post"
+    class="needs-validation"
+    novalidate
+  >
+    <label for="title">title</label>
+    <div class="input-group mb-1">
+
+      <span class="input-group-text"><i class="fa fa-film fa-fw"></i></span>
+
+      <input
+        value="{{movie.title}}"
+        type="text"
+        name="title"
+        class="form-control"
+        placeholder="name movie"
+          required
+      />
+      <div class="valid-feedback">!Ok válido</div>
+      <div class="invalid-feedback">Complete el campo</div>
+    </div>
+    <label for="director">Movie director</label>
+    <div class="input-group mb-2">
+      <span class="input-group-text"><i class="fa fa-film fa-fw"></i></span>
+      <input
+        value="{{this.director}}"
+        type="text"
+        name="director"
+        class="form-control"
+        placeholder="name director"
+          required
+      />
+    </div>
+    <label for="description">Movie description</label>
+    <div class="input-group mb-2">
+      <span class="input-group-text"><i class="fa fa-book fa-fw"></i></span>
+      <input
+        value="{{movie.description}}"
+        type="text"
+        name="description"
+        class="form-control"
+        placeholder="add description"
+          required
+      />
+    </div>
+
+    <div class="d-grid">
+      <button class="btn btn-primary" type="submit">New Movie</button>
+    </div>
+  </form>
+</div>
+
+

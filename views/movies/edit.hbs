@@ -1,0 +1,44 @@
+<div>
+
+  {{#if errors}}
+    <div class="alert alert-danger">
+      {{#each errors as |error|}}
+        <div>error</div>
+      {{/each}}
+    </div>
+
+  {{/if}}
+
+  <form action="/movies/{{movie.id}}" method="post">
+    <div class="input-group mb-1">
+      <span class="input-group-text"><i class="fa fa-envelope fa-fw"></i></span>
+      <input
+        value="{{movie.title}}"
+        type="text"
+        name="title"
+        class="form-control"
+        placeholder="name movie"
+      />
+    </div>
+
+    <div class="input-group mb-2">
+      <span class="input-group-text"><i class="fa fa-bicycle fa-fw"></i></span>
+      <input
+        value="{{this.director}}"
+        type="text"
+        name="director"
+        class="form-control"
+        placeholder="name director"
+      />
+    </div>
+
+    <div class="input-group mb-2">
+      <span class="input-group-text"><i class="fa fa-trophy fa-fw"></i></span>
+      <input
+        value="{{movie.description}}"
+        type="text"
+        name="description"
+        class="form-control"
+        placeholder="add description"
+      />
+    </div>
