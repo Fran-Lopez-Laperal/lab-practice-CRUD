@@ -47,7 +47,7 @@ module.exports.edit = (req, res, next) => {
       if (movie) {
         res.render("movies/edit", { movie });
       } else {
-        res.redirect("/");
+        res.redirect("/movies/list");
       }
     })
     .catch((error) => {
@@ -61,7 +61,7 @@ module.exports.doEdit = (req, res, next) => {
       if (movie) {
         res.redirect(`${movie.id}`);
       } else {
-        res.redirect("/");
+        res.redirect("/movies/list");
       }
     })
     .catch((error) => {
@@ -78,7 +78,7 @@ module.exports.doEdit = (req, res, next) => {
 module.exports.delete = (req, res, next) => {
   Movie.findByIdAndDelete(req.params.id)
     .then(() => {
-      res.redirect("/");
+      res.redirect("/movies/list");
     })
     .catch((error) => {
       next(error);
