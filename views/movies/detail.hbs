@@ -1,28 +1,115 @@
-<div class="card mb-3" style="max-width: 540px;">
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img src="{{movie.image}}" class="img-fluid rounded-start" alt="..." />
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title">{{movie.title}}</h5>
-        <p class="card-text">{{movie.director}}</p>
-        <p class="card-text"><small
-            class="text-muted"
-          >{{movie.description}}</small></p>
+<div class="row">
+  <div class="card mb-3" style="max-width: 540px;">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="{{movie.image}}" class="img-fluid rounded-start" alt="..." />
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{movie.title}}</h5>
+          <p class="card-text">{{movie.director}}</p>
+          <p class="card-text"><small
+              class="text-muted"
+            >{{movie.description}}</small></p>
+
+        </div>
 
       </div>
-
     </div>
+  </div>
+  <div class="container d-flex flex-column">
+    <div>
+      <a href="/movies/{{movie.id}}/edit"> <i class="fa fa-edit"></i> </a>
+    </div>
+
+    <form
+      action="/movies/{{movie.id}}/delete"
+      method="POST"
+      class="needs validation mt-5"
+      novalidate
+    >
+      <button type="submit" class="btn btn-danger">
+
+        <i class="fa fa-trash"></i>
+      </button>
+    </form>
   </div>
 </div>
 
-<div>
-  <a href="/movies/{{movie.id}}/edit">EDIT</a>
+<div class="col-12 mt-3">
+
+  <h4>TIMELINE</h4>
+  <div class="row">
+    <div class="col-12 col-md-5">
+      <form action="/movies/{{movie.id}}/events" method="post">
+
+        <div class="input-group mb-1">
+
+          <span class="input-group-text"><i class="fa fa-tag fa-fw"></i></span>
+
+          <input
+            type="text"
+            value="{{event.title}}"
+            name="title"
+            class="form-control {{#if errors.title }}is-invalid{{/if}}"
+            placeholder="Event title"
+          />
+          <div class="invalid-feedback">{{ errors.title }}</div>
+        </div>
+        
+
+        <div class="input-group mb-1">
+
+          <span class="input-group-text"><i class="fa fa-picture-o fa-fw"></i></span>
+          <input
+            type="text"
+            name="image"
+            value="{{event.image}}"
+
+            class="form-control {{#if errors.image }}is-invalid{{/if}} "
+            placeholder="Event image url..."
+          />
+          <div class="invalid-feedback">{{ errors.image }}</div>
+        </div>
+
+        <div class="input-group mb-2">
+          <span class="input-group-text"><i class="fa fa-edit fa-fw"></i></span>
+          <textarea
+            class="form-control {{#if errors.descriptiom }}is-invalid{{/if}}" name="description" 
+            value="{{event.description}}"
+            aria-label="Event description"
+          ></textarea>
+           <div class="invalid-feedback">{{ errors.description }}</div>
+        </div>
+        <button type="submit" class="btn btn-primary">
+          add event
+        </button>
+      </form>
+       <div>
+      <button class="btn-primary btn-danger mt-5">
+        <a href="/">HOME</a>
+      </button>
+    </div>
+    </div>
+  </div>
+
+
+
+<div class="row row-columns-4">
+ {{#each events as |event|}}
+    <div class="col">
+      <div class="card">
+    <img src="{{event.image}}" class="card-img-top" alt="{{event.title}}">
+    <div class="card-body">
+      <h5 class="card-title">{{event.title}}</h5>
+      <p class="card-text">{{event.description}}</p>
+    </div>
+  </div>
+      <h6>{{event.title}}</h6>
+    </div>   
+ {{/each}}
 </div>
 
-<form action="/movies/{{movie.id}}/delete" method="POST" class="needs validation" novaidate>
-  <button type="submit" class="btn btn-danger">
-    delete
-  </button>
-</form>
+
+
+</div>

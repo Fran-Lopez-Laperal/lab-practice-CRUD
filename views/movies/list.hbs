@@ -13,9 +13,20 @@
       <img src="{{movie.image}}" class="card-img-top" alt="..." />
       <div class="card-body">
         <h5 style="text-align:center" class="card-title">{{movie.title}}</h5>
-        <a style="margin: 2em" href="/movies/{{movie.id}}" class="btn btn-primary">See more</a>
+        <a
+          style="margin: 2em"
+          href="/movies/{{movie.id}}"
+          class="btn btn-primary"
+        >See more</a>
       </div>
     </div>
 
   {{/each}}
+
+</div>
+
+<div>
+  <button class="btn-primary btn-danger">
+    <a href="/">HOME</a>
+  </button>
 </div>

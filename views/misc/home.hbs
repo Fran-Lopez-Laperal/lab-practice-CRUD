@@ -1,8 +1,22 @@
-<div class="background">
+<h1>Ironhack Cinema</h1>
 
-  <h1>Cinema Ironhack</h1>
-  <form action="/movies/list" method="GET">
-    <button>Check the movies</button>
-  </form>
-  <a href="/movies/create">Create new movie</a>
-</div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/movies/list">Ckeck the movies</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item me-2">
+          <h6> create new movie
+            <a class="nav-link active" aria-current="page" href="/movies/create"><i class="fa fa-plus fa-fw"></i> </a>
+          </h6>
+          
+        </li>
+       
+       
+      </ul>
+    </div>
+  </div>
+</nav>

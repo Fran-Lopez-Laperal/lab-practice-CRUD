@@ -13,10 +13,10 @@ const eventSchema = new Schema(
       type: String,
       required: [true, "image is required"],
     },
-    contact: {
+    movie: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Contacts",
-      required: [true, "contact id is required"],
+      ref: "Movies",
+      required: [true, "movie id is required"],
     },
   },
   { timestamp: true }

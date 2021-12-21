@@ -1,4 +1,7 @@
+const createError = require("http-errors");
+
 const Movie = require("../models/movie.model.js");
+const Event = require("../models/event.model")
 
 module.exports.list = (req, res, next) => {
   Movie.find()
@@ -31,9 +34,11 @@ module.exports.detail = (req, res, next) => {
   Movie.findById(req.params.id)
     .then((movie) => {
       if (movie) {
-        res.render("movies/detail", { movie });
+        return Event.find({ movie: req.params.id})
+        .then(events => res.render("movies/detail", { movie, events }) )
+        
       } else {
-        res.redirect("/");
+        next(createError(404, "Movie not found"));
       }
     })
     .catch((error) => {
@@ -47,7 +52,7 @@ module.exports.edit = (req, res, next) => {
       if (movie) {
         res.render("movies/edit", { movie });
       } else {
-        res.redirect("/movies/list");
+        next(createError(404, "Movie not found"));
       }
     })
     .catch((error) => {
@@ -61,7 +66,7 @@ module.exports.doEdit = (req, res, next) => {
       if (movie) {
         res.redirect(`${movie.id}`);
       } else {
-        res.redirect("/movies/list");
+        next(createError(404, "Movie not found"));
       }
     })
     .catch((error) => {
@@ -77,10 +82,12 @@ module.exports.doEdit = (req, res, next) => {
 
 module.exports.delete = (req, res, next) => {
   Movie.findByIdAndDelete(req.params.id)
-    .then(() => {
-      res.redirect("/movies/list");
+    .then((movie) => {
+      if (movie) {
+        res.redirect("/movies");
+      } else {
+        next(createError(404, "Movie not found"));
+      }
     })
-    .catch((error) => {
-      next(error);
-    });
+    .catch((error) => next(error));
 };
